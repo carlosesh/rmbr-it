@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import SignIn from "./ui/SignIn";
+import SignUp from "./ui/SignUp";
+import Pricing from "./ui/Pricing";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/signin">SignIn</Link>
+                        </li>
+                        <li>
+                            <Link to="/signup">SignUp</Link>
+                        </li>
+                    </ul>
+                </nav>
+
+                {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+                <Switch>
+                    <Route path="/signin">
+                        <SignIn/>
+                    </Route>
+                    <Route path="/signup">
+                        <SignUp/>
+                    </Route>
+                    <Route path="/">
+                        <Pricing/>
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
